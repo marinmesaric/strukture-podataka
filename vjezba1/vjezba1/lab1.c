@@ -11,24 +11,30 @@ typedef struct _student {
 } Student;
 
 
-int readNoRowsInFile() {
+int readNoRowsInFile(FILE* file) {
 	int cnt = 0;
 	FILE* filePointer = NULL;
 	char buffer[MAX_LINE] = { 0 };
-
 	filePointer = fopen("students.txt", "r");
 	if (!filePointer) {
-		//printf();
+		printf("greska u otvaranju");
+		return FILE_ERROR_OPEN;
 	}
+	while (!feof(filePointer)) {
+		if (fgetc(filePointer) == '\n')
+			cnt++;
+	}
+
+	return cnt;
 }
 
 
 int main() {
+	FILE* file;
 	int noRows = 0;
-
-
-
+	noRows = readNoRowsInFile(file);
+	printf("%d", noRows);
+	fclose(file);
 
 	return 0;
 }
-
