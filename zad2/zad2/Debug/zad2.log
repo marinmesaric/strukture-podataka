@@ -1,0 +1,4 @@
+﻿  zad.c
+C:\Users\marin\Documents\fesb\GitHub\strukture-podataka\zad2\zad2\zad.c(65): warning C4716: 'enterSurname': must return a value
+C:\Users\marin\Documents\fesb\GitHub\strukture-podataka\zad2\zad2\zad.c(108): warning C4716: 'printList': must return a value
+  zad2.vcxproj -> C:\Users\marin\Documents\fesb\GitHub\strukture-podataka\zad2\Debug\zad2.exe
