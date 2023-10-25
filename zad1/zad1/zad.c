@@ -89,7 +89,7 @@ int showStudents(int noStudents, Student* students)
 
 
 int main() {
-	int noRows;
+	int noRows = 0;
 	Student* students = NULL;
 	noRows = readNoRowsInFile();
 

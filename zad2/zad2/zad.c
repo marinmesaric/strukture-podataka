@@ -11,12 +11,14 @@
 struct _Person;
 
 typedef struct _Person* Position;
+
 typedef struct _Person {
 	char name[MAX_LENGTH];
 	char surname[MAX_LENGTH];
 	int birthYear;
 	Position next;
 } Person;
+
 
 Position createPerson()
 {
@@ -47,6 +49,7 @@ Position createPerson()
 	return newPerson;
 }
 
+
 Position findLast(Position head) {
 	Position current = head;
 
@@ -58,11 +61,6 @@ Position findLast(Position head) {
 	return current;
 }
 
-char* enterSurname()
-{
-	char surname[MAX_LENGTH] = { 0 };
-	// fali
-}
 
 int addToFrontOfTheList(Position head) {
 	Position newPerson = NULL;
@@ -78,6 +76,7 @@ int addToFrontOfTheList(Position head) {
 	return EXIT_SUCCESS;
 
 }
+
 
 int addToEndOfTheList(Position head) {
 	Position newPerson = NULL;
@@ -95,6 +94,34 @@ int addToEndOfTheList(Position head) {
 	return EXIT_SUCCESS;
 }
 
+
+char* enterSurname() { //??
+	char surname[MAX_LENGTH] = { 0 };
+	printf("Enter surname:\n");
+	scanf(" %s", surname);
+	return surname;
+}
+
+
+int findPerson(Position firstItem) {
+	Position current = firstItem;
+	char surname[MAX_LENGTH] = { 0 };
+
+	if (firstItem == NULL) return NO_PERSON_FOUND; 
+
+	strcpy(surname, enterSurname());
+	
+	do {
+		if (strcpy(current->surname, surname) == 0) {
+			return current;
+		}
+		else {
+			current = current->next;
+		}
+	} while (current);
+}
+
+
 int printList(Position firstElement) {
 	Position current = firstElement;
 	if (!firstElement)
@@ -105,6 +132,58 @@ int printList(Position firstElement) {
 	{
 		printf("Name: %s\t Surname: %s\t Birth year: %d\t\n", current->name, current->surname, current->birthYear);
 	}
+}
+
+
+int deletePerson(Position head) {
+	Position current = head;
+	char surname[MAX_LENGTH] = { 0 };
+
+	strcpy(surname, enterSurname());
+
+	if (head->next) {
+		Position previous = NULL;
+
+		while (current->next && strcpy(current->surname), surname) {
+			previous = current;
+			current = current->next;
+		}
+
+		if (previous && previous->next && strcpy(current->surname, surname) == 0) {
+			printPerson(current);
+			previous->next = current->next;
+			free(current);
+		}
+		else {
+			return NO_PERSON_FOUND;
+		}
+	}
+
+}
+
+
+int insertAfterPerson(Position person) {
+	Position newPerson = NULL;
+
+	newPerson = createPerson();
+
+	if (newPerson) {
+		newPerson->next = person->next;
+		person->next = newPerson;
+	}
+
+	return EXIT_SUCCESS;
+}
+
+
+Position findPrevious(Position head) {
+	Position current = head; //?
+	char surname[MAX_LENGTH] = { 0 };
+
+	do {
+		if (strcpy(current->next->surname, surname) == 0) return current;
+		else current = current->next;
+	} while (current->next != NULL);
 }
 
 
@@ -129,6 +208,7 @@ int menu(Position head)
 		}
 	}
 }
+
 
 int main()
 {
