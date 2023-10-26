@@ -112,7 +112,7 @@ int findPerson(Position firstItem) {
 	strcpy(surname, enterSurname());
 	
 	do {
-		if (strcpy(current->surname, surname) == 0) {
+		if (strcmp(current->surname, surname) == 0) {
 			return current;
 		}
 		else {
@@ -144,12 +144,12 @@ int deletePerson(Position head) {
 	if (head->next) {
 		Position previous = NULL;
 
-		while (current->next && strcpy(current->surname), surname) {
+		while (current->next && strcmp(current->surname, surname) != 0) {
 			previous = current;
 			current = current->next;
 		}
 
-		if (previous && previous->next && strcpy(current->surname, surname) == 0) {
+		if (previous && previous->next && strcmp(current->surname, surname) == 0) {
 			printPerson(current);
 			previous->next = current->next;
 			free(current);
@@ -177,11 +177,16 @@ int insertAfterPerson(Position person) {
 
 
 Position findPrevious(Position head) {
-	Position current = head; //?
+	Position current = head;
 	char surname[MAX_LENGTH] = { 0 };
 
+	if (!head->next) {
+		printf("Empty list!\n");
+		return NO_PERSON_FOUND;
+	}
+
 	do {
-		if (strcpy(current->next->surname, surname) == 0) return current;
+		if (strcmp(current->next->surname, surname) == 0) return current;
 		else current = current->next;
 	} while (current->next != NULL);
 }
@@ -199,7 +204,7 @@ int menu(Position head)
 			addToFrontOfTheList(head);
 			continue;
 		case 'B':
-
+			continue;
 		case 'E':
 			addToEndOfTheList(head);
 			continue;
