@@ -218,9 +218,13 @@ int menu(Position head)
 int main()
 {
 	Person head = { .next = NULL, .name = {0}, .surname = {0}, .birthYear = 0 };
+	Position current = &head;
 
 	menu(&head);
 
+	while (current->next != NULL) {
+		deletePerson(current);
+	}
 
 	return 0;
 }
