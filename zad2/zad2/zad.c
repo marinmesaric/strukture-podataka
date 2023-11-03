@@ -150,7 +150,7 @@ int deletePerson(Position head) {
 		}
 
 		if (previous && previous->next && strcmp(current->surname, surname) == 0) {
-			printPerson(current);
+			//printPerson(current); test
 			previous->next = current->next;
 			free(current);
 		}
