@@ -1,4 +1,10 @@
 ﻿  zad.c
-C:\Users\marin\Documents\fesb\GitHub\strukture-podataka\zad2\zad2\zad.c(65): warning C4716: 'enterSurname': must return a value
-C:\Users\marin\Documents\fesb\GitHub\strukture-podataka\zad2\zad2\zad.c(108): warning C4716: 'printList': must return a value
-  zad2.vcxproj -> C:\Users\marin\Documents\fesb\GitHub\strukture-podataka\zad2\Debug\zad2.exe
+C:\Users\student\Desktop\vjezbe\strukture-podataka\zad2\zad2\zad.c(110,47): warning C4047: 'return': 'int' differs in levels of indirection from 'void *'
+C:\Users\student\Desktop\vjezbe\strukture-podataka\zad2\zad2\zad.c(116,18): warning C4047: 'return': 'int' differs in levels of indirection from 'Position'
+C:\Users\student\Desktop\vjezbe\strukture-podataka\zad2\zad2\zad.c(158,26): warning C4047: 'return': 'int' differs in levels of indirection from 'void *'
+C:\Users\student\Desktop\vjezbe\strukture-podataka\zad2\zad2\zad.c(102): warning C4172: returning address of local variable or temporary: surname
+C:\Users\student\Desktop\vjezbe\strukture-podataka\zad2\zad2\zad.c(122): warning C4715: 'findPerson': not all control paths return a value
+C:\Users\student\Desktop\vjezbe\strukture-podataka\zad2\zad2\zad.c(192): warning C4715: 'findPrevious': not all control paths return a value
+C:\Users\student\Desktop\vjezbe\strukture-podataka\zad2\zad2\zad.c(135): warning C4716: 'printList': must return a value
+C:\Users\student\Desktop\vjezbe\strukture-podataka\zad2\zad2\zad.c(162): warning C4715: 'deletePerson': not all control paths return a value
+  zad2.vcxproj -> C:\Users\student\Desktop\vjezbe\strukture-podataka\zad2\Debug\zad2.exe
