@@ -1,2 +1,5 @@
 ﻿  zad.c
-  zad3.vcxproj -> C:\Users\student\Desktop\gfthzwe\strukture-podataka\zad3\Debug\zad3.exe
+C:\Users\marin\Documents\fesb\GitHub\strukture-podataka\zad3\zad3\zad.c(36,14): warning C4013: 'readFile' undefined; assuming extern returning int
+C:\Users\marin\Documents\fesb\GitHub\strukture-podataka\zad3\zad3\zad.c(115,30): warning C4013: 'abs' undefined; assuming extern returning int
+C:\Users\marin\Documents\fesb\GitHub\strukture-podataka\zad3\zad3\zad.c(238,19): warning C4047: 'return': 'Position' differs in levels of indirection from 'int'
+  zad3.vcxproj -> C:\Users\marin\Documents\fesb\GitHub\strukture-podataka\zad3\Debug\zad3.exe
