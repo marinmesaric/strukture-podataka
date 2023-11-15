@@ -1,0 +1,6 @@
+﻿  zad.c
+C:\Users\marin\Documents\fesb\GitHub\strukture-podataka\zad5\zad5\zad.c(61,14): warning C4047: 'function': 'char *' differs in levels of indirection from 'char *[1024]'
+C:\Users\marin\Documents\fesb\GitHub\strukture-podataka\zad5\zad5\zad.c(61,8): warning C4024: 'fgets': different types for formal and actual parameter 1
+C:\Users\marin\Documents\fesb\GitHub\strukture-podataka\zad5\zad5\zad.c(68,1): warning C4047: 'initializing': 'char *' differs in levels of indirection from 'char **'
+C:\Users\marin\Documents\fesb\GitHub\strukture-podataka\zad5\zad5\zad.c(104): warning C4715: 'operation': not all control paths return a value
+  zad5.vcxproj -> C:\Users\marin\Documents\fesb\GitHub\strukture-podataka\zad5\Debug\zad5.exe
