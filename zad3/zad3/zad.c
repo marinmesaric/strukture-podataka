@@ -25,6 +25,7 @@ int mergeAfter(Position current, Position newElement);
 int insertAfter(Position current, Position newElement);
 int insertSorted(Position head, Position newElement);
 int deleteAfter(Position previous);
+int freeMemory(Position head);
 int printPoly(Position first);
 
 
@@ -207,12 +208,22 @@ int deleteAfter(Position previous) {
 	Position toDelete = NULL;
 
 	toDelete = previous->next;
-	previous->next = toDelete;
+	previous->next = toDelete->next;
 	free(toDelete);
 
 	return EXIT_SUCCESS;
 }
 
+
+int freeMemory(Position head) {
+	Position current = head;
+
+	while (current->next) {
+		deleteAfter(current);
+	}
+
+	return EXIT_SUCCESS;
+}
 
 Position createElement(int coefficient, int exponent) {
 	Position element = NULL;
