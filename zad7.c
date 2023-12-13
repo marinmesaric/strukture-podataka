@@ -95,7 +95,6 @@ int main() {
     return 0;
 }
 
-/*Directory functions*/
 
 PositionDirectory createDirectory(char name[MAX_NAME_LENGTH]) {
     PositionDirectory newDirectory = NULL;
@@ -147,7 +146,6 @@ int listDirectoryContents(PositionDirectory currentDirectory) {
     return EXIT_SUCCESS;
 }
 
-/*Stack functions*/
 
 PositionDirectory pop(PositionLevelStack headLevelStack) {
     PositionLevelStack toDelete = NULL;
