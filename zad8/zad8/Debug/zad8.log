@@ -1,0 +1,12 @@
+﻿  zad.c
+C:\Users\marin\Documents\fesb\GitHub\strukture-podataka\zad8\zad8\zad.c(7,1): warning C4005: 'EXIT_SUCCESS': macro redefinition
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\stdlib.h(52): message : see previous definition of 'EXIT_SUCCESS'
+C:\Users\marin\Documents\fesb\GitHub\strukture-podataka\zad8\zad8\zad.c(49,16): warning C4047: 'return': 'Position' differs in levels of indirection from 'int'
+C:\Users\marin\Documents\fesb\GitHub\strukture-podataka\zad8\zad8\zad.c(59,16): warning C4033: 'inorder' must return a value
+C:\Users\marin\Documents\fesb\GitHub\strukture-podataka\zad8\zad8\zad.c(68,16): warning C4033: 'preorder' must return a value
+C:\Users\marin\Documents\fesb\GitHub\strukture-podataka\zad8\zad8\zad.c(76,16): warning C4033: 'postorder' must return a value
+C:\Users\marin\Documents\fesb\GitHub\strukture-podataka\zad8\zad8\zad.c(42): warning C4715: 'insert': not all control paths return a value
+C:\Users\marin\Documents\fesb\GitHub\strukture-podataka\zad8\zad8\zad.c(64): warning C4716: 'inorder': must return a value
+C:\Users\marin\Documents\fesb\GitHub\strukture-podataka\zad8\zad8\zad.c(72): warning C4716: 'preorder': must return a value
+C:\Users\marin\Documents\fesb\GitHub\strukture-podataka\zad8\zad8\zad.c(80): warning C4716: 'postorder': must return a value
+  zad8.vcxproj -> C:\Users\marin\Documents\fesb\GitHub\strukture-podataka\zad8\Debug\zad8.exe
