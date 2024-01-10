@@ -1,5 +1,5 @@
 ﻿  zad.c
-C:\Users\marin\Documents\fesb\GitHub\strukture-podataka\zad9\zad9\zad.c(40,8): warning C4244: 'function': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\marin\Documents\fesb\GitHub\strukture-podataka\zad9\zad9\zad.c(90,13): warning C4033: 'inorder' must return a value
-C:\Users\marin\Documents\fesb\GitHub\strukture-podataka\zad9\zad9\zad.c(94): warning C4716: 'inorder': must return a value
+C:\Users\marin\Documents\fesb\GitHub\strukture-podataka\zad9\zad9\zad.c(39,8): warning C4244: 'function': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\marin\Documents\fesb\GitHub\strukture-podataka\zad9\zad9\zad.c(87,13): warning C4033: 'inorder' must return a value
+C:\Users\marin\Documents\fesb\GitHub\strukture-podataka\zad9\zad9\zad.c(91): warning C4716: 'inorder': must return a value
   zad9.vcxproj -> C:\Users\marin\Documents\fesb\GitHub\strukture-podataka\zad9\x64\Debug\zad9.exe

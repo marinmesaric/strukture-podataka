@@ -36,21 +36,19 @@ int random();
 
 int main() {
 	Position root = NULL;
-	Position randRoot = NULL;
 	srand(time(0));
 	FILE* filePointer = fopen("inorder.txt", "w");
 
 	root = insert(root, random());
-	randRoot = insert(randRoot, random());
 	for (int i = 0; i < 10; i++) {
-		insert(randRoot, random());
+		insert(root, random());
 	}
 	
 	inorder(root, filePointer);
 	replace(root);
 	
 	fprintf(filePointer, "\n");
-	inorder(randRoot, filePointer);
+	inorder(root, filePointer);
 	fclose(filePointer);
 	return 0;
 }
@@ -72,7 +70,6 @@ Position createNode(int value) {
 
 
 Position insert(Position root, int value) {
-
 	if (root == NULL) {
 		return createNode(value);
 	}
