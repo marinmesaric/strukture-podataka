@@ -1,0 +1,7 @@
+﻿  zad.c
+C:\Users\marin\Documents\fesb\strukture-vjezba\zad2\zad2\zad.c(10,1): warning C4005: 'EXIT_SUCCESS': macro redefinition
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\ucrt\stdlib.h(52,1):
+  see previous definition of 'EXIT_SUCCESS'
+  
+C:\Users\marin\Documents\fesb\strukture-vjezba\zad2\zad2\zad.c(93): warning C4716: 'addToList': must return a value
+  zad2.vcxproj -> C:\Users\marin\Documents\fesb\strukture-vjezba\zad2\x64\Debug\zad2.exe

@@ -1,0 +1,8 @@
+﻿  zad.c
+C:\Users\marin\Documents\fesb\strukture-vjezba\zad3\zad3\zad.c(17,1): warning C4005: 'EXIT_SUCCESS': macro redefinition
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\ucrt\stdlib.h(52,1):
+  see previous definition of 'EXIT_SUCCESS'
+  
+C:\Users\marin\Documents\fesb\strukture-vjezba\zad3\zad3\zad.c(39,8): warning C4244: 'function': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\marin\Documents\fesb\strukture-vjezba\zad3\zad3\zad.c(57,4): warning C4047: 'return': 'Position' differs in levels of indirection from 'int'
+  zad3.vcxproj -> C:\Users\marin\Documents\fesb\strukture-vjezba\zad3\x64\Debug\zad3.exe
