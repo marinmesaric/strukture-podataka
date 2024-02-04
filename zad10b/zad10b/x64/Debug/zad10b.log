@@ -1,0 +1,3 @@
+﻿  zad.c
+C:\Users\marin\Documents\fesb\GitHub\strukture-podataka\zad10b\zad10b\zad.c(239): warning C4715: 'findCountry': not all control paths return a value
+  zad10b.vcxproj -> C:\Users\marin\Documents\fesb\GitHub\strukture-podataka\zad10b\x64\Debug\zad10b.exe
