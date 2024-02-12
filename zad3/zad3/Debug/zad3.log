@@ -1,5 +1,10 @@
 ﻿  zad.c
-C:\Users\student\Desktop\mesaric\strukture-podataka\zad3\zad3\zad.c(37,6): warning C4013: 'readFile' undefined; assuming extern returning int
-C:\Users\student\Desktop\mesaric\strukture-podataka\zad3\zad3\zad.c(113,27): warning C4013: 'abs' undefined; assuming extern returning int
-C:\Users\student\Desktop\mesaric\strukture-podataka\zad3\zad3\zad.c(235,19): warning C4047: 'return': 'Position' differs in levels of indirection from 'int'
-  zad3.vcxproj -> C:\Users\student\Desktop\mesaric\strukture-podataka\zad3\Debug\zad3.exe
+C:\Users\marin\Documents\fesb\GitHub\strukture-podataka\zad3\zad3\zad.c(47,3): warning C4013: 'deletePerson' undefined; assuming extern returning int
+C:\Users\marin\Documents\fesb\GitHub\strukture-podataka\zad3\zad3\zad.c(180,4): warning C4047: 'return': 'int' differs in levels of indirection from 'void *'
+C:\Users\marin\Documents\fesb\GitHub\strukture-podataka\zad3\zad3\zad.c(426,3): warning C4047: 'return': 'int' differs in levels of indirection from 'void *'
+C:\Users\marin\Documents\fesb\GitHub\strukture-podataka\zad3\zad3\zad.c(128): warning C4172: returning address of local variable or temporary: surname
+C:\Users\marin\Documents\fesb\GitHub\strukture-podataka\zad3\zad3\zad.c(159): warning C4716: 'printList': must return a value
+C:\Users\marin\Documents\fesb\GitHub\strukture-podataka\zad3\zad3\zad.c(212): warning C4715: 'findPrevious': not all control paths return a value
+C:\Users\marin\Documents\fesb\GitHub\strukture-podataka\zad3\zad3\zad.c(147): warning C4715: 'findPerson': not all control paths return a value
+C:\Users\marin\Documents\fesb\GitHub\strukture-podataka\zad3\zad3\zad.c(184): warning C4715: 'deletePerson': not all control paths return a value
+  zad3.vcxproj -> C:\Users\marin\Documents\fesb\GitHub\strukture-podataka\zad3\Debug\zad3.exe

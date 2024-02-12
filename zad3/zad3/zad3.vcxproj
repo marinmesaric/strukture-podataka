@@ -126,7 +126,7 @@
     <ClCompile Include="zad.c" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="poly.txt" />
+    <Text Include="file.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

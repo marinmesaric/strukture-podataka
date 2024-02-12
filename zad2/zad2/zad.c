@@ -19,6 +19,26 @@ typedef struct _Person {
 	Position next;
 } Person;
 
+Position createPerson();
+Position findLast(Position head);
+int addToFrontOfTheList(Position head);
+int addToEndOfTheList(Position head);
+int menu(Position head);
+Position findPerson(Position firstItem);
+
+int main()
+{
+	Person head = { .next = NULL, .name = {0}, .surname = {0}, .birthYear = 0 };
+	Position current = &head;
+
+	menu(&head);
+
+	while (current->next != NULL) {
+		deletePerson(current);
+	}
+
+	return 0;
+}
 
 Position createPerson()
 {
@@ -103,7 +123,7 @@ char* enterSurname() { //??
 }
 
 
-int findPerson(Position firstItem) {
+Position findPerson(Position firstItem) {
 	Position current = firstItem;
 	char surname[MAX_LENGTH] = { 0 };
 
@@ -150,7 +170,6 @@ int deletePerson(Position head) {
 		}
 
 		if (previous && previous->next && strcmp(current->surname, surname) == 0) {
-			//printPerson(current); test
 			previous->next = current->next;
 			free(current);
 		}
@@ -197,34 +216,26 @@ int menu(Position head)
 	char choice = '\0';
 	while (1)
 	{
-		printf("...");
+		puts("A/B/C/D/E");
 		scanf(" %c", &choice);
 		switch (choice) {
 		case 'A':
 			addToFrontOfTheList(head);
 			continue;
 		case 'B':
+			printList(head);
 			continue;
-		case 'E':
+		case 'C':
 			addToEndOfTheList(head);
 			continue;
-		case 'P':
+		case 'E':
+			deletePerson(findPerson(head->next));
+			continue;
+		case 'D':
+			printf("%p\n", findPerson(head->next));
 			continue;
 		}
 	}
 }
 
 
-int main()
-{
-	Person head = { .next = NULL, .name = {0}, .surname = {0}, .birthYear = 0 };
-	Position current = &head;
-
-	menu(&head);
-
-	while (current->next != NULL) {
-		deletePerson(current);
-	}
-
-	return 0;
-}

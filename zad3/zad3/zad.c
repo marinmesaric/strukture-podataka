@@ -4,203 +4,263 @@
 #include <malloc.h>
 #include <string.h>
 
-#define EXIT_SUCCESS -1
-#define EXIT_FAILURE -2
-#define MAX_LINE 1024
-#define FILE_ERR -3
-#define ALLOC_ERR -4
+#define MAX_LENGTH 50
+#define NO_PERSON_FOUND NULL
+#define EXIT_SUCCESS -2
+#define EXIT_FAILURE -3
 
-struct _Element;
-typedef struct _Element* Position;
-typedef struct _Element {
-	int coeff;
-	int exp;
+struct _Person;
+
+typedef struct _Person* Position;
+
+typedef struct _Person {
+	char name[MAX_LENGTH];
+	char surname[MAX_LENGTH];
+	int birthYear;
 	Position next;
-} Element;
+} Person;
+
+Position createPerson();
+Position findLast(Position head);
+int addToFrontOfTheList(Position head);
+int addToEndOfTheList(Position head);
+int menu(Position head);
+Position findPerson(Position firstItem);
+int addAfter(Position head, char* selected);
+int addBefore(Position head, char* selected);
+int sort(Position head);
+int swapItems(Position first, Position second);
+int addToFrontOfTheListFromFile(Position head, char* name, char* surname, int birthYear);
+int writeFile(Position head, char* fileName);
+int readFile(Position head, char* fileName);
 
 
-int parseStringIntoList(Position head, char* buffer);
-Position createElement(int coefficient, int exponent);
-int mergeAfter(Position current, Position newElement);
-int insertAfter(Position current, Position newElement);
-int insertSorted(Position head, Position newElement);
-int deleteAfter(Position previous);
-int freeMemory(Position head);
-int printPoly(Position first);
 
+int main()
+{
+	Person head = { .next = NULL, .name = {0}, .surname = {0}, .birthYear = 0 };
+	Position current = &head;
 
-int main() {
-	Element headPoly1 = { .coeff = 0, .exp = 0, .next = NULL };
-	Element headPoly2 = { .coeff = 0, .exp = 0, .next = NULL };
-	char* fileName = "poly.txt";
+	menu(&head);
 
-	if (readFile(&headPoly1, &headPoly2, fileName) == EXIT_SUCCESS) {
-		printPoly(headPoly1.next);
-		printPoly(headPoly2.next);
+	while (current->next != NULL) {
+		deletePerson(current);
 	}
 
 	return 0;
 }
 
+Position createPerson()
+{
+	Position newPerson = NULL;
+	char name[MAX_LENGTH];
+	char surname[MAX_LENGTH];
+	int birthYear = 0;
 
-int insertSorted(Position head, Position newElement) {
+	newPerson = malloc(sizeof(Person));
+
+	if (!newPerson)
+	{
+		printf("Can't allocate memory!\n");
+		return NULL;
+	}
+
+	printf("Enter name:\n");
+	scanf(" %s", name);
+	printf("Enter surname:\n");
+	scanf(" %s", surname);
+	printf("Enter birth year:\n");
+	scanf(" %d", &birthYear);
+
+	strcpy(newPerson->name, name);
+	strcpy(newPerson->surname, surname);
+	newPerson->birthYear = birthYear;
+
+	return newPerson;
+}
+
+Position findLast(Position head) {
 	Position current = head;
 
-	while (current->next != NULL && current->next->exp > newElement->exp) {
+	while (current->next != NULL)
+	{
 		current = current->next;
 	}
 
-	mergeAfter(current, newElement);
+	return current;
+}
+
+int addToFrontOfTheList(Position head) {
+	Position newPerson = NULL;
+
+	newPerson = createPerson();
+
+	if (newPerson)
+	{
+		newPerson->next = head->next;
+		head->next = newPerson;
+	}
+
+	return EXIT_SUCCESS;
+
+}
+
+int addToEndOfTheList(Position head) {
+	Position newPerson = NULL;
+	Position last = NULL;
+
+	newPerson = createPerson();
+
+	if (newPerson)
+	{
+		last = findLast(head);
+		newPerson->next = last->next;
+		last->next = newPerson;
+	}
 
 	return EXIT_SUCCESS;
 }
 
+char* enterSurname() {
+	char surname[MAX_LENGTH] = { 0 };
+	printf("Enter surname:\n");
+	scanf(" %s", surname);
+	return surname;
+}
 
-int mergeAfter(Position current, Position newElement) {
-	if (current->next == NULL || current->next->exp != newElement->exp) {
-		insertAfter(current, newElement);
-	}
-	else {
-		int resultCoeff = current->next->coeff + newElement->coeff;
+Position findPerson(Position firstItem) {
+	Position current = firstItem;
+	char surname[MAX_LENGTH] = { 0 };
 
-		if (!resultCoeff) {
-			deleteAfter(current);
+	if (firstItem == NULL) return NO_PERSON_FOUND;
+
+	strcpy(surname, enterSurname());
+
+	do {
+		if (strcmp(current->surname, surname) == 0) {
+			return current;
 		}
 		else {
-			current->next->coeff = resultCoeff;
+			current = current->next;
 		}
-		free(newElement);
+	} while (current);
+}
+
+int printList(Position firstElement) {
+	Position current = firstElement;
+	if (!firstElement)
+	{
+		printf("Empty list!\n");
 	}
-
-	return EXIT_SUCCESS;
+	for (; current != NULL; current = current->next)
+	{
+		printf("Name: %s\t Surname: %s\t Birth year: %d\t\n", current->name, current->surname, current->birthYear);
+	}
 }
 
+int deletePerson(Position head) {
+	Position current = head;
+	char surname[MAX_LENGTH] = { 0 };
 
-int insertAfter(Position current, Position newElement) {
-	newElement->next = current->next;
-	current->next = newElement;
+	strcpy(surname, enterSurname());
 
-	return EXIT_SUCCESS;
-}
+	if (head->next) {
+		Position previous = NULL;
 
+		while (current->next && strcmp(current->surname, surname) != 0) {
+			previous = current;
+			current = current->next;
+		}
 
-int printPoly(Position first) {
-
-	if (first) {
-		if (first->exp < 0) {
-			if (first->coeff == 1) {
-				printf("x^(%d)", first->exp);
-			}
-			else {
-				printf("%dx^(%d)", first->coeff, first->exp);
-			}
+		if (previous && previous->next && strcmp(current->surname, surname) == 0) {
+			previous->next = current->next;
+			free(current);
 		}
 		else {
-			if (first->coeff == 1) {
-				printf("x^%d", first->exp);
-			}
-			else {
-				printf("%dx^%d", first->coeff, first->exp);
-			}
-		}
-
-		first = first->next;
-	}
-
-	for (; first != NULL; first = first->next) {
-		if (first->coeff < 0) {
-			if (first->exp < 0) {
-				printf(" - %dx^(%d)", abs(first->coeff), first->exp);
-			}
-			else {
-				printf(" - %dx^%d", abs(first->coeff), first->exp);
-			}
-		}
-		else {
-			if (first->exp < 0) {
-				if (first->coeff == 1) {
-					printf(" + x^(%d)", first->exp);
-				}
-				else {
-					printf(" + %dx^(%d)", first->coeff, first->exp);
-				}
-			}
-			else {
-				if (first->coeff == 1) {
-					printf(" + x^%d", first->exp);
-				}
-				else {
-					printf(" + %dx^%d", first->coeff, first->exp);
-				}
-			}
+			return NO_PERSON_FOUND;
 		}
 	}
 
-	printf("\n");
-
-	return EXIT_SUCCESS;
 }
 
+int insertAfterPerson(Position person) {
+	Position newPerson = NULL;
 
-int parseStringIntoList(Position head, char* buffer) {
-	char* currentBuffer = buffer;
-	int coefficient = 0;
-	int exponent = 0;
-	int numBytes = 0;
-	int status = 0;
-	Position newElement = NULL;
+	newPerson = createPerson();
 
-	while (strlen(currentBuffer) > 0) {
-		status = sscanf(currentBuffer, " %dx^%d %n", &coefficient, &exponent, &numBytes);
-
-		if (status != 2) {
-			printf("This file is not good!\n");
-			return EXIT_FAILURE;
-		}
-
-		newElement = createElement(coefficient, exponent);
-
-		if (!newElement) {
-			return EXIT_FAILURE;
-		}
-
-		insertSorted(head, newElement);
-		currentBuffer += numBytes;
+	if (newPerson) {
+		newPerson->next = person->next;
+		person->next = newPerson;
 	}
 
 	return EXIT_SUCCESS;
 }
 
+Position findPrevious(Position head) {
+	Position current = head;
+	char surname[MAX_LENGTH] = { 0 };
 
-int readFile(Position headPoly1, Position headPoly2, char* fileName) {
-	FILE* filePointer = NULL;
-	char buffer[MAX_LINE] = { 0 };
-	int status = EXIT_SUCCESS;
-
-	filePointer = fopen(fileName, "r");
-
-	if (!filePointer) {
-		printf("File error!\n");
-		return FILE_ERR;
+	if (!head->next) {
+		printf("Empty list!\n");
+		return NO_PERSON_FOUND;
 	}
 
-	fgets(buffer, MAX_LINE, filePointer);
-	status = parseStringIntoList(headPoly1, buffer);
+	do {
+		if (strcmp(current->next->surname, surname) == 0) return current;
+		else current = current->next;
+	} while (current->next != NULL);
+}
 
-	if (status != EXIT_SUCCESS) {
-		return EXIT_FAILURE;
+int menu(Position head)
+{
+	char choice = '\0';
+	char surname[MAX_LENGTH] = { 0 };
+	while (1)
+	{
+		puts("A/B/C/D/E/F/G/H/I/J");
+		scanf(" %c", &choice);
+		switch (choice) {
+		case 'A':
+			addToFrontOfTheList(head);
+			continue;
+		case 'B':
+			printList(head);
+			continue;
+		case 'C':
+			addToEndOfTheList(head);
+			continue;
+		case 'E':
+			deletePerson(findPerson(head->next));
+			continue;
+		case 'D':
+			printf("%p\n", findPerson(head->next));
+			continue;
+		case 'F':
+			puts("unesi prezime osobe iza koje se unosi nova: ");
+			scanf("%s", surname);
+			addAfter(head, surname);
+			continue;
+		case 'G':
+			puts("unesi prezime osobe ispred koje se unosi nova: ");
+			scanf("%s", surname);
+			addBefore(head, surname);
+			continue;
+		case 'H':
+			sort(head);
+			puts("sortirano!");
+			continue;
+		case 'I':
+			puts("upisivanje u datoteku \"file1.txt\"...");
+			writeFile(head, "file1.txt");
+			puts("upisano!");
+			continue;
+		case 'J':
+			puts("upisivanje iz datoteke \"file.txt\"...");
+			readFile(head, "file.txt");
+			puts("upisano!");
+			continue;
+		}
 	}
-
-	fgets(buffer, MAX_LINE, filePointer);
-	status = parseStringIntoList(headPoly2, buffer);
-
-	if (status != EXIT_SUCCESS) {
-		return EXIT_FAILURE;
-	}
-
-	fclose(filePointer);
-
-	return EXIT_SUCCESS;
 }
 
 
@@ -214,7 +274,6 @@ int deleteAfter(Position previous) {
 	return EXIT_SUCCESS;
 }
 
-
 int freeMemory(Position head) {
 	Position current = head;
 
@@ -225,20 +284,155 @@ int freeMemory(Position head) {
 	return EXIT_SUCCESS;
 }
 
-Position createElement(int coefficient, int exponent) {
-	Position element = NULL;
-
-	element = (Position)malloc(sizeof(Element));
-
-	if (!element) {
-		printf("Allocation error!\n");
-		return ALLOC_ERR;
+int addAfter(Position head, char* selected)
+{
+	Position newPerson = NULL;
+	newPerson = (Position)malloc(sizeof(Person));
+	if (!newPerson)
+	{
+		printf("couldn't allocate memory");
+		return EXIT_FAILURE;
+	}
+	newPerson = createPerson();
+	if (!newPerson)
+		return EXIT_FAILURE;
+	while (head->next != NULL)
+	{
+		if (strcmp(head->surname, selected) == 0)
+		{
+			newPerson->next = head->next;
+			head->next = newPerson;
+			break;
+		}
+		head = head->next;
 	}
 
-	element->coeff = coefficient;
-	element->exp = exponent;
-	element->next = NULL;
-
-	return element;
+	return EXIT_SUCCESS;
 }
 
+int addBefore(Position head, char* selected)
+{
+	Position newPerson = NULL;
+	newPerson = (Position)malloc(sizeof(Person));
+	if (!newPerson)
+	{
+		printf("couldn't allocate memory");
+		return EXIT_FAILURE;
+	}
+	newPerson = createPerson();
+	if (!newPerson)
+		return EXIT_FAILURE;
+	while (head != NULL)
+	{
+		if (strcmp(head->next->surname, selected) == 0)
+		{
+			newPerson->next = head->next;
+			head->next = newPerson;
+			break;
+		}
+		head = head->next;
+	}
+
+	return EXIT_SUCCESS;
+}
+
+int sort(Position head) {
+	int swapped = 0;
+	Position lastPersonRead = NULL;
+	Position start = head;
+
+	if (!start) {
+		printf("Empty list!\n");
+		return EXIT_FAILURE;
+	}
+	else if (!head->next) {
+		printf("Only single element in list!\n");
+		return EXIT_SUCCESS;
+	}
+
+	do {
+		swapped = 0;
+		Position current = start;
+
+		while (current->next != lastPersonRead) {
+			if (strcmp(current->surname, current->next->surname) > 0) {
+				swapItems(current, current->next);
+				swapped = 1;
+			}
+			current = current->next;
+		}
+		lastPersonRead = current;
+	} while (swapped);
+
+	return EXIT_SUCCESS;
+}
+
+int swapItems(Position first, Position second) {
+	char tempName[MAX_LENGTH];
+	char tempSurname[MAX_LENGTH];
+	int tempBirthYear;
+
+	strcpy(tempName, first->name);
+	strcpy(tempSurname, first->surname);
+	tempBirthYear = first->birthYear;
+
+	strcpy(first->name, second->name);
+	strcpy(first->surname, second->surname);
+	first->birthYear = second->birthYear;
+
+	strcpy(second->name, tempName);
+	strcpy(second->surname, tempSurname);
+	second->birthYear = tempBirthYear;
+
+	return EXIT_SUCCESS;
+}
+
+int writeFile(Position head, char* fileName)
+{
+	FILE* filePointer = fopen(fileName, "w");
+	while (head != NULL)
+	{
+		fprintf(filePointer, "Name: %s, Surname: %s, Birthyear: %d\n", head->name, head->surname, head->birthYear);
+		head = head->next;
+	}
+	return EXIT_SUCCESS;
+	fclose(filePointer);
+}
+
+int readFile(Position head, char* fileName)
+{
+	FILE* filePointer = fopen(fileName, "r");
+	char name[MAX_LENGTH];
+	char surname[MAX_LENGTH];
+	int birthyear;
+
+	while (!feof(filePointer))
+	{
+		fscanf(filePointer, "%s %s %d", name, surname, &birthyear);
+		addToFrontOfTheListFromFile(head, name, surname, birthyear);
+	}
+	fclose(filePointer);
+	return EXIT_SUCCESS;
+}
+
+int addToFrontOfTheListFromFile(Position head, char* name, char* surname, int birthYear) {
+	Position newPerson = NULL;
+
+	newPerson = (Position)malloc(sizeof(Person));
+
+	if (!newPerson)
+	{
+		printf("Can't allocate memory!\n");
+		return NULL;
+	}
+
+	strcpy(newPerson->name, name);
+	strcpy(newPerson->surname, surname);
+	newPerson->birthYear = birthYear;
+
+	newPerson->next = head->next;
+	head->next = newPerson;
+
+	
+	return EXIT_SUCCESS;
+}
